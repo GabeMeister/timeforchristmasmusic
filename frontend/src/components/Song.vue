@@ -1,16 +1,16 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <router-link to="/Song">Go to Song</router-link>
+    <router-link to="/">Go to HelloWorld</router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Song',
   data () {
     return {
-      msg: 'Welcome to Time for Christmas Music'
+      msg: 'This is the song page.'
     }
   }
 }
