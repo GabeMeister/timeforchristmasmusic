@@ -53,13 +53,7 @@ def setup_release():
 
 
 def deploy(tag=''):
-    """
-    1. Run git fetch
-    2. Run checkout on specified tag
-    3. Install any new pip requirements
-    4. Run a npm build to update front end resources
-    5. Restart gunicorn via supervisor
-    """
+    """ Deploy a tag on remote """
     # Check if user specified a tag
     if tag == '':
         abort('Specify a git tag to deploy')
