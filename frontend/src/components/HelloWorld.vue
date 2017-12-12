@@ -10,7 +10,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Time for Christmas Music!'
+      msg: 'Welcome to Time for Christmas Music!!!!'
     }
   }
 }

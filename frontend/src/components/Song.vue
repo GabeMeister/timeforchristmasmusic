@@ -10,7 +10,7 @@ export default {
   name: 'Song',
   data () {
     return {
-      msg: 'This is the song page!'
+      msg: 'This is the song page!!!!'
     }
   }
 }
