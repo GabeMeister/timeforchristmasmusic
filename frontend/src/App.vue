@@ -1,12 +1,27 @@
 <template>
   <div id="app">
+    <button @click="handleClick">Click Me</button>
     <router-view/>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
+import axios from 'axios';
+
 export default {
-  name: 'app'
+  name: 'app',
+  methods: {
+      handleClick: function() {
+        axios.get(Vue.config.baseUrl+'/songlist')
+          .then(response => {
+            console.log('response: ', response.data);
+          })
+          .catch(error => {
+            console.log('error: ', error);
+          });
+      }
+  }
 }
 </script>
 
