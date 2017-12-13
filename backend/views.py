@@ -25,6 +25,14 @@ def songlist():
     ])
 
 
+@app.route('/song/<url>')
+def song(url):
+    return jsonify({
+        "name": "White Christmas",
+        "lyrics": "I'm dreaming of a white christmas"
+    })
+
+
 @app.route('/<path:path>')
 def fallback(path):
     return render_template('index.html')
