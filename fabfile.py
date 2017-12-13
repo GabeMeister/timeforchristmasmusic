@@ -76,6 +76,9 @@ def deploy(tag=''):
         run(remote_pip + ' install -r requirements.txt')
 
     with cd(remote_frontend_app_dir):
+        # Get any new dependencies
+        run('npm install')
+
         # run npm build to get dist/ folder up to date
         run('npm run build')
 
