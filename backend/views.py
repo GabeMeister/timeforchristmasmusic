@@ -2,8 +2,10 @@
 
 # pylint: disable=C0103,C0111,C0413,C0412,C0411,C0330
 
+import os
 from backend import app
 from flask import render_template, jsonify
+from helpers import get_name_from_url
 
 
 @app.route('/')
@@ -13,16 +15,12 @@ def index():
 
 @app.route('/songlist')
 def songlist():
-    return jsonify([
-        {
-            "name": "Sleigh Ride",
-            "url": "sleigh-ride"
-        },
-        {
-            "name": "White Christmas",
-            "url": "white-christmas"
-        }
-    ])
+    # Current directory is the root directory
+    all_songs = os.listdir('./backend/songs')
+    all_songs = map(lambda song: song.replace('.txt', ''), all_songs)
+    all_songs = map(lambda song: {'name': get_name_from_url(song), 'url': song}, all_songs)
+
+    return jsonify(all_songs)
 
 
 @app.route('/song/<url>')
