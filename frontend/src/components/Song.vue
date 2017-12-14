@@ -1,7 +1,12 @@
 <template>
   <div class="song">
     <h1 v-text="name"></h1>
-    <p v-text="lyrics"></p>
+    <div v-for="line in lyrics" :key="line">
+      <div v-if="line === ''">
+        <br/>
+      </div>
+      <div v-if="line !== ''" v-text="line"></div>
+    </div>
     <router-link to="/">Back to Song List</router-link>
   </div>
 </template>
@@ -28,6 +33,7 @@ export default {
           .then(response => {
             this.name = response.data.name;
             this.lyrics = response.data.lyrics;
+            console.log('assigned lyrics: ', this.lyrics);
           })
           .catch(error => {
             console.log('error: ', error);

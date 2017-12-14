@@ -15,7 +15,7 @@ export default {
   name: 'Song',
   data () {
     return {
-      msg: 'This is the song list page',
+      msg: 'Pick a Christmas Song!',
       songs: []
     }
   },

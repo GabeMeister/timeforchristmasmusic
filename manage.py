@@ -20,6 +20,7 @@ def rename():
 
     print 'done.'
 
+
 @manager.command
 def get_song_list():
     ret = songlist()

@@ -25,9 +25,21 @@ def songlist():
 
 @app.route('/song/<url>')
 def song(url):
+    response = {'data': [], 'error': ''}
+
+    path = './backend/songs/{0}.txt'.format(url)
+    if not os.path.isfile(path):
+        response['error'] = 'Song not found.'
+        return jsonify(response)
+
+    # Read song lyrics
+    lyrics = ''
+    with open(path, 'r') as song_file:
+        lyrics = song_file.read().split('\r\n')
+
     return jsonify({
-        "name": "White Christmas",
-        "lyrics": "I'm dreaming of a white christmas"
+        "name": get_name_from_url(url),
+        "lyrics": lyrics
     })
 
 
