@@ -5,7 +5,7 @@
       <div v-if="line === ''">
         <br/>
       </div>
-      <div v-if="line !== ''" v-text="line"></div>
+      <div v-if="line !== ''" v-text="line" class="line"></div>
     </div>
     <router-link to="/"><h2>Back to Song List</h2></router-link>
   </div>
@@ -59,5 +59,8 @@ li {
 a {
   color: #42b983;
   text-decoration: none;
+}
+.line {
+    font-size: 24px;
 }
 </style>
