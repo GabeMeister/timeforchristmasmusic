@@ -3,6 +3,7 @@
 # pylint: disable=C0103,C0111,C0413,C0412,C0411,C0330
 
 import os
+import simplejson
 from backend import app
 from flask import render_template, jsonify
 from helpers import get_name_from_url
@@ -16,31 +17,42 @@ def index():
 @app.route('/songlist')
 def songlist():
     # Current directory is the root directory
-    all_songs = os.listdir('./backend/songs')
-    all_songs = map(lambda song: song.replace('.txt', ''), all_songs)
-    all_songs = map(lambda song: {'name': get_name_from_url(song), 'url': song}, all_songs)
+    song_data_paths = os.listdir('./backend/song_json')
 
-    return jsonify(all_songs)
+    all_song_data = []
+
+    # Open each file and read the song name
+    for path in song_data_paths:
+        with open('./backend/song_json/'+path, 'r') as song_file:
+            text = song_file.read()
+            song_data = simplejson.loads(text)
+
+            all_song_data.append({
+                'name': song_data['name'],
+                'url': path.replace('.json', '')
+            })
+
+    all_song_data.sort(key=lambda s: s['name'])
+
+    return jsonify(all_song_data)
 
 
 @app.route('/song/<url>')
 def song(url):
-    response = {'data': [], 'error': ''}
-
-    path = './backend/songs/{0}.txt'.format(url)
+    path = './backend/song_json/{0}.json'.format(url)
     if not os.path.isfile(path):
-        response['error'] = 'Song not found.'
-        return jsonify(response)
+        return jsonify({'error': 'Song not found.'})
 
     # Read song lyrics
-    lyrics = ''
+    song = {}
     with open(path, 'r') as song_file:
-        lyrics = song_file.read().split('\r\n')
+        text = song_file.read()
+        song_data = simplejson.loads(text)
 
-    return jsonify({
-        "name": get_name_from_url(url),
-        "lyrics": lyrics
-    })
+        song['name'] = song_data['name']
+        song['lyrics'] = song_data['lyrics']
+
+    return jsonify(song)
 
 
 @app.route('/<path:path>')

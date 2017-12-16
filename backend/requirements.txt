@@ -28,6 +28,7 @@ pycparser==2.18
 pylint==1.7.4
 PyNaCl==1.2.1
 requests==2.18.4
+simplejson==3.13.2
 singledispatch==3.4.0.3
 six==1.11.0
 urllib3==1.22

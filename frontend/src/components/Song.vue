@@ -7,7 +7,9 @@
       </div>
       <div v-if="line !== ''" v-text="line" class="line"></div>
     </div>
-    <router-link to="/"><h2>Back to Song List</h2></router-link>
+    <router-link to="/">
+        <h2>Back to Song List</h2>
+    </router-link>
   </div>
 </template>
 
@@ -33,7 +35,6 @@ export default {
           .then(response => {
             this.name = response.data.name;
             this.lyrics = response.data.lyrics;
-            console.log('assigned lyrics: ', this.lyrics);
           })
           .catch(error => {
             console.log('error: ', error);
