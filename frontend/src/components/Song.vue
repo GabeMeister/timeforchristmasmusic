@@ -7,7 +7,7 @@
       </div>
       <div v-if="line !== ''" v-text="line"></div>
     </div>
-    <router-link to="/">Back to Song List</router-link>
+    <router-link to="/"><h2>Back to Song List</h2></router-link>
   </div>
 </template>
 
@@ -46,7 +46,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
-  font-weight: normal;
+  font-weight: bold;
 }
 ul {
   list-style-type: none;
@@ -58,5 +58,6 @@ li {
 }
 a {
   color: #42b983;
+  text-decoration: none;
 }
 </style>
